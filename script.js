@@ -1,3 +1,4 @@
+
 const questions = [
     {
         question: "Kui vana oli Walter White, kui teda diagnoositi?",
@@ -112,6 +113,7 @@ const questions = [
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
+const leaderboardElement = document.getElementById("leaderboard"); // Where we will display the leaderboard
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -120,7 +122,7 @@ function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Järgmine";
-    nextButton.style.display = 'none'; 
+    nextButton.style.display = 'none';
     showQuestion();
 }
 
@@ -130,7 +132,6 @@ function showQuestion() {
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
-    
     const imgContainer = document.createElement("div");
     const imgElement = document.createElement("img");
     imgElement.src = currentQuestion.image;
@@ -141,14 +142,13 @@ function showQuestion() {
 
     questionElement.appendChild(imgContainer);
 
-    
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
         answerButtons.appendChild(button);
         if(answer.correct){
-            button.dataset.correct = answer.correct
+            button.dataset.correct = answer.correct;
         }
         button.addEventListener("click", selectAnswer);
     });
@@ -174,6 +174,13 @@ function nextQuestion() {
 function showResults() {
     questionElement.innerHTML = `Teie skoor: ${score} / ${questions.length}`;
     answerButtons.innerHTML = '';  
+
+    // Ask for the user's name and submit the score
+    const name = prompt("Sisestage oma nimi / algtehed:");
+    submitScore(name, score);
+
+    // Show the updated leaderboard
+    displayLeaderboard();
 }
 
 nextButton.addEventListener("click", nextQuestion);
@@ -189,7 +196,6 @@ function selectAnswer(e) {
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
 
-    
     const allButtons = answerButtons.querySelectorAll("button");
     allButtons.forEach(button => button.disabled = true);
 
@@ -202,9 +208,69 @@ function selectAnswer(e) {
         correctButton.classList.add("correct");
     }
 
-    
     checkAnswer({correct: isCorrect});
     nextButton.style.display = 'block';  
 }
+
+// Fetch leaderboard from the server
+async function fetchLeaderboard() {
+    try {
+        const response = await fetch('https://kool.krister.ee/chat/stage2');
+        if (!response.ok) {
+            throw new Error('Failed to fetch leaderboard data');
+        }
+        const leaderboard = await response.json();
+        return leaderboard;
+    } catch (error) {
+        console.error("Error fetching leaderboard:", error);
+        return [];
+    }
+}
+
+// Submit score to the server
+async function submitScore(user, score) {
+    const scoreData = {
+        user: user,
+        score: score
+    };
+
+    try {
+        const response = await fetch('https://kool.krister.ee/chat/stage2', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(scoreData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to submit score');
+        }
+    } catch (error) {
+        console.error("Error submitting score:", error);
+    }
+}
+
+// Display the leaderboard
+async function displayLeaderboard() {
+    const leaderboard = await fetchLeaderboard();
+    leaderboardElement.innerHTML = "<h3>Leaderboard:</h3>";
+
+    if (leaderboard.length === 0) {
+        leaderboardElement.innerHTML += "Leaderboard is empty.";
+    } else {
+        leaderboard.sort((a, b) => b.score - a.score);  // Sort by score (high to low)
+        leaderboard.slice(0, 5).forEach((entry, index) => {
+            const entryElement = document.createElement("div");
+            entryElement.innerHTML = `${index + 1}. ${entry.user} - ${entry.score} punkti`;
+            leaderboardElement.appendChild(entryElement);
+        });
+    }
+}
+
+// Display leaderboard on page load
+document.addEventListener("DOMContentLoaded", () => {
+    displayLeaderboard();
+});
 
 startQuiz();

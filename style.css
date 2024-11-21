@@ -90,3 +90,51 @@ body {
 .incorrect {
     background-color: #ff9393
 }
+
+/* Leaderboard styling */
+#leaderboard {
+    margin-top: 30px;
+    font-size: 18px;
+    color: #333;
+}
+
+#leaderboard h3 {
+    margin-bottom: 10px;
+}
+
+#leaderboard div {
+    margin-bottom: 5px;
+}
+
+#leaderboard div:first-child {
+    font-weight: bold;
+}
+
+/* Empty leaderboard message */
+#leaderboard-empty {
+    font-size: 18px;
+    color: #777;/* Leaderboard styling */
+}
+ #leaderboard {
+    margin-top: 30px;
+    font-size: 18px;
+    color: #333;
+}
+
+#leaderboard h3 {
+    margin-bottom: 10px;
+}
+
+#leaderboard div {
+    margin-bottom: 5px;
+}
+
+#leaderboard div:first-child {
+    font-weight: bold;
+}
+
+/* Empty leaderboard message */
+#leaderboard-empty {
+    font-size: 18px;
+    color: #777;
+}
