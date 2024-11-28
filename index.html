@@ -13,6 +13,7 @@
             <div id="question"></div>
             <div id="answer-buttons"></div> 
             <button id="next-btn" style="display: none;">Järgmine</button>
+            <div id="high-scores"></div>
         </div>
     </div>
 
@@ -24,43 +25,6 @@
     
 
     <script src="script.js"></script>
-    <script>
-        function showResults() {
-            questionElement.innerHTML = `Teie skoor: ${score} / ${questions.length}`;
-            nextButton.innerHTML = "Play Again";
-            nextButton.style.display = "none";
-            answerButtons.innerHTML = '';  
-        
-            
-            localStorage.setItem('quizScore', score);
-        
-            
-            sendScoreToServer(score);
-        }
-        
-        function sendScoreToServer(score) {
-            const data = {
-                score: score,
-                
-                user: "Player",  
-            };
-        
-            fetch("https://kool.krister.ee/chat/stage2", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(result => {
-                console.log("Score successfully sent to server:", result);
-            })
-            .catch(error => {
-                console.error("Error sending score to server:", error);
-            });
-        }
-        </script>
 
 </body>
 </html>

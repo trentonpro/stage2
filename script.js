@@ -1,4 +1,3 @@
-
 const questions = [
     {
         question: "Kui vana oli Walter White, kui teda diagnoositi?",
@@ -113,7 +112,7 @@ const questions = [
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
-const leaderboardElement = document.getElementById("leaderboard"); // Where we will display the leaderboard
+const highScoresElement = document.getElementById("high-scores"); 
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -122,7 +121,7 @@ function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Järgmine";
-    nextButton.style.display = 'none';
+    nextButton.style.display = 'none'; 
     showQuestion();
 }
 
@@ -172,15 +171,68 @@ function nextQuestion() {
 }
 
 function showResults() {
+  
     questionElement.innerHTML = `Teie skoor: ${score} / ${questions.length}`;
-    answerButtons.innerHTML = '';  
+    nextButton.innerHTML = "Play Again";
+    nextButton.style.display = "none"; 
+    answerButtons.innerHTML = ''; 
 
-    // Ask for the user's name and submit the score
-    const name = prompt("Sisestage oma nimi / algtehed:");
-    submitScore(name, score);
 
-    // Show the updated leaderboard
-    displayLeaderboard();
+    saveScoreLocally(score);
+
+
+    sendScoreToServer(score);
+
+  
+    displayHighScores();
+}
+
+
+function saveScoreLocally(score) {
+    let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    highScores.push(score);
+    highScores.sort((a, b) => b - a); 
+    highScores = highScores.slice(0, 5); 
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+}
+
+
+function sendScoreToServer(score) {
+    const data = {
+        score: score,
+        user: "Player",  
+    };
+
+    fetch("https://kool.krister.ee/chat/stage2", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log("Score successfully sent to server:", result);
+    })
+    .catch(error => {
+        console.error("Error sending score to server:", error);
+    });
+}
+
+
+function displayHighScores() {
+    let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    highScoresElement.innerHTML = "<h3>High Scores:</h3>";
+
+    if (highScores.length === 0) {
+        highScoresElement.innerHTML += "No high scores yet.";
+    } else {
+        highScores.forEach((score, index) => {
+            const scoreElement = document.createElement("div");
+            scoreElement.innerHTML = `${index + 1}. ${score} points`;
+            highScoresElement.appendChild(scoreElement);
+        });
+    }
 }
 
 nextButton.addEventListener("click", nextQuestion);
@@ -212,65 +264,9 @@ function selectAnswer(e) {
     nextButton.style.display = 'block';  
 }
 
-// Fetch leaderboard from the server
-async function fetchLeaderboard() {
-    try {
-        const response = await fetch('https://kool.krister.ee/chat/stage2');
-        if (!response.ok) {
-            throw new Error('Failed to fetch leaderboard data');
-        }
-        const leaderboard = await response.json();
-        return leaderboard;
-    } catch (error) {
-        console.error("Error fetching leaderboard:", error);
-        return [];
-    }
-}
-
-// Submit score to the server
-async function submitScore(user, score) {
-    const scoreData = {
-        user: user,
-        score: score
-    };
-
-    try {
-        const response = await fetch('https://kool.krister.ee/chat/stage2', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(scoreData)
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to submit score');
-        }
-    } catch (error) {
-        console.error("Error submitting score:", error);
-    }
-}
-
-// Display the leaderboard
-async function displayLeaderboard() {
-    const leaderboard = await fetchLeaderboard();
-    leaderboardElement.innerHTML = "<h3>Leaderboard:</h3>";
-
-    if (leaderboard.length === 0) {
-        leaderboardElement.innerHTML += "Leaderboard is empty.";
-    } else {
-        leaderboard.sort((a, b) => b.score - a.score);  // Sort by score (high to low)
-        leaderboard.slice(0, 5).forEach((entry, index) => {
-            const entryElement = document.createElement("div");
-            entryElement.innerHTML = `${index + 1}. ${entry.user} - ${entry.score} punkti`;
-            leaderboardElement.appendChild(entryElement);
-        });
-    }
-}
-
-// Display leaderboard on page load
 document.addEventListener("DOMContentLoaded", () => {
-    displayLeaderboard();
+    displayHighScores();
 });
 
 startQuiz();
+
