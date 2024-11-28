@@ -3,130 +3,133 @@ const questions = [
         question: "Kui vana oli Walter White, kui teda diagnoositi?",
         image: "walter.jpg",
         answers: [
-            {text: "49", correct: false},
-            {text: "50", correct: true},
-            {text: "45", correct: false},
-            {text: "52", correct: false},
+            { text: "49", correct: false },
+            { text: "50", correct: true },
+            { text: "45", correct: false },
+            { text: "52", correct: false },
         ]
     },
     {
         question: "Mis oli lennuki nimi, mis lendas teise lennukiga kokku?",
         image: "plane.jpg",
         answers: [
-            {text: "737", correct: true},
-            {text: "473", correct: false},
-            {text: "747", correct: false},
-            {text: "803", correct: false},
+            { text: "737", correct: true },
+            { text: "473", correct: false },
+            { text: "747", correct: false },
+            { text: "803", correct: false },
         ]
     },
-    {
-        question: "Kas Mike valis täis või poolik valiku?",
-        image: "mike.jpg",
-        answers: [
-            {text: "Poolik", correct: true},
-            {text: "Täis", correct: false},
-        ]
-    },
-    {
-        question: "Miks tahtis Gus cartellile kattemaksu teha?",
-        image: "saul.jpg",
-        answers: [
-            {text: "Nad varastasid tema sobra", correct: false},
-            {text: "Piinasid teda mitu paeva", correct: false},
-            {text: "Joid tema joogi ara", correct: false},
-            {text: "Tapsid tema sobra", correct: true},
-        ]
-    },
-    {
-        question: "Mis on episoodi nimi, millel on IMDb-s perfektne (10/10)?",
-        image: "ozy.jpg",
-        answers: [
-            {text: "Felina", correct: false},
-            {text: "Buyout", correct: false},
-            {text: "Ozymandias", correct: true},
-            {text: "Mandala", correct: false},
-        ]
-    },
-    {
-        question: "Kuidas kutsuti Tuco abuelitat kahe rulasoitja poolt?",
-        image: "skater.jpg",
-        answers: [
-            {text: "Pendejo", correct: false},
-            {text: "Puto", correct: false},
-            {text: "Mama", correct: false},
-            {text: "Biznatch", correct: true},
-        ]
-    },
-    {
-        question: "Mis oli Jimmy juriidilise juhtumi nimi?",
-        image: "sandpiper.jpg",
-        answers: [
-            {text: "Sandpiper", correct: true},
-            {text: "Mesa Verde", correct: false},
-            {text: "Blue Sky", correct: false},
-            {text: "A1A", correct: false},
-        ]
-    },
-    {
-        question: "Mis juhtus Better Call Sauli kolmanda hooaja lopus?",
-        image: "s3finale.jpg",
-        answers: [
-            {text: "Chuck tegi enesetapu", correct: true},
-            {text: "Saul parandas enda auto", correct: false},
-            {text: "Kim jai auto alla", correct: false},
-            {text: "Kim pani enda maja kogemata polema", correct: false},
-        ]
-    },
-    {
-        question: "Kus kais Jimmy tootamas 1 aasta?",
-        image: "1aasta.jpg",
-        answers: [
-            {text: "Prostituudina", correct: false},
-            {text: "Koolis opetajana", correct: false},
-            {text: "Telefoni muujana", correct: true},
-            {text: "Advokaadina", correct: false},
-        ]
-    },
-    {
-        question: "Kelleks vahetas Jimmy McGill oma nime?",
-        image: "saulgoodman.jpeg",
-        answers: [
-            {text: "Saul Bueno", correct: false},
-            {text: "Saul Goodman", correct: true},
-            {text: "Saul McGill", correct: false},
-            {text: "Saul Takovic", correct: false},
-        ]
-    },
-    {
-        question: "Mis on Better Call Saul viimase episoodi nimi?",
-        image: "saulgone.jpg",
-        answers: [
-            {text: "Finale", correct: false},
-            {text: "Felina", correct: false},
-            {text: "The Last Hearing", correct: false},
-            {text: "Saul Gone", correct: true},
-        ]
-    },
+    // {
+    //     question: "Kas Mike valis täis või poolik valiku?",
+    //     image: "mike.jpg",
+    //     answers: [
+    //         {text: "Poolik", correct: true},
+    //         {text: "Täis", correct: false},
+    //     ]
+    // },
+    // {
+    //     question: "Miks tahtis Gus cartellile kattemaksu teha?",
+    //     image: "saul.jpg",
+    //     answers: [
+    //         {text: "Nad varastasid tema sobra", correct: false},
+    //         {text: "Piinasid teda mitu paeva", correct: false},
+    //         {text: "Joid tema joogi ara", correct: false},
+    //         {text: "Tapsid tema sobra", correct: true},
+    //     ]
+    // },
+    // {
+    //     question: "Mis on episoodi nimi, millel on IMDb-s perfektne (10/10)?",
+    //     image: "ozy.jpg",
+    //     answers: [
+    //         {text: "Felina", correct: false},
+    //         {text: "Buyout", correct: false},
+    //         {text: "Ozymandias", correct: true},
+    //         {text: "Mandala", correct: false},
+    //     ]
+    // },
+    // {
+    //     question: "Kuidas kutsuti Tuco abuelitat kahe rulasoitja poolt?",
+    //     image: "skater.jpg",
+    //     answers: [
+    //         {text: "Pendejo", correct: false},
+    //         {text: "Puto", correct: false},
+    //         {text: "Mama", correct: false},
+    //         {text: "Biznatch", correct: true},
+    //     ]
+    // },
+    // {
+    //     question: "Mis oli Jimmy juriidilise juhtumi nimi?",
+    //     image: "sandpiper.jpg",
+    //     answers: [
+    //         {text: "Sandpiper", correct: true},
+    //         {text: "Mesa Verde", correct: false},
+    //         {text: "Blue Sky", correct: false},
+    //         {text: "A1A", correct: false},
+    //     ]
+    // },
+    // {
+    //     question: "Mis juhtus Better Call Sauli kolmanda hooaja lopus?",
+    //     image: "s3finale.jpg",
+    //     answers: [
+    //         {text: "Chuck tegi enesetapu", correct: true},
+    //         {text: "Saul parandas enda auto", correct: false},
+    //         {text: "Kim jai auto alla", correct: false},
+    //         {text: "Kim pani enda maja kogemata polema", correct: false},
+    //     ]
+    // },
+    // {
+    //     question: "Kus kais Jimmy tootamas 1 aasta?",
+    //     image: "1aasta.jpg",
+    //     answers: [
+    //         {text: "Prostituudina", correct: false},
+    //         {text: "Koolis opetajana", correct: false},
+    //         {text: "Telefoni muujana", correct: true},
+    //         {text: "Advokaadina", correct: false},
+    //     ]
+    // },
+    // {
+    //     question: "Kelleks vahetas Jimmy McGill oma nime?",
+    //     image: "saulgoodman.jpeg",
+    //     answers: [
+    //         {text: "Saul Bueno", correct: false},
+    //         {text: "Saul Goodman", correct: true},
+    //         {text: "Saul McGill", correct: false},
+    //         {text: "Saul Takovic", correct: false},
+    //     ]
+    // },
+    // {
+    //     question: "Mis on Better Call Saul viimase episoodi nimi?",
+    //     image: "saulgone.jpg",
+    //     answers: [
+    //         {text: "Finale", correct: false},
+    //         {text: "Felina", correct: false},
+    //         {text: "The Last Hearing", correct: false},
+    //         {text: "Saul Gone", correct: true},
+    //     ]
+    // },
 ];
 
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
-const highScoresElement = document.getElementById("high-scores"); 
+const highScoresElement = document.getElementById("high-scores");
 
-let currentQuestionIndex = 0;
-let score = 0;
+document.addEventListener("DOMContentLoaded", () => {
+    const username = prompt("Enter your username:");
+    localStorage.setItem("username", username);
+    displayHighScores();
+});
 
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Järgmine";
-    nextButton.style.display = 'none'; 
+    nextButton.style.display = 'none';
     showQuestion();
 }
 
 function showQuestion() {
-    resetState();  
+    resetState();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
@@ -135,9 +138,9 @@ function showQuestion() {
     const imgElement = document.createElement("img");
     imgElement.src = currentQuestion.image;
     imgElement.alt = "Question Image";
-    imgElement.style.maxWidth = "75%";  
-    imgContainer.style.textAlign = "center";  
-    imgContainer.appendChild(imgElement);    
+    imgElement.style.maxWidth = "75%";
+    imgContainer.style.textAlign = "center";
+    imgContainer.appendChild(imgElement);
 
     questionElement.appendChild(imgContainer);
 
@@ -146,7 +149,7 @@ function showQuestion() {
         button.innerHTML = answer.text;
         button.classList.add("btn");
         answerButtons.appendChild(button);
-        if(answer.correct){
+        if (answer.correct) {
             button.dataset.correct = answer.correct;
         }
         button.addEventListener("click", selectAnswer);
@@ -155,52 +158,44 @@ function showQuestion() {
 
 function checkAnswer(answer) {
     if (answer.correct) {
-        score++;  
+        score++;
     }
-    nextButton.style.display = 'block';  
+    nextButton.style.display = 'block';
 }
 
 function nextQuestion() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         showQuestion();
-        nextButton.style.display = 'none';  
+        nextButton.style.display = 'none';
     } else {
         showResults();
     }
 }
 
 function showResults() {
-  
     questionElement.innerHTML = `Teie skoor: ${score} / ${questions.length}`;
     nextButton.innerHTML = "Play Again";
-    nextButton.style.display = "none"; 
-    answerButtons.innerHTML = ''; 
-
+    nextButton.style.display = "none";
+    answerButtons.innerHTML = '';
 
     saveScoreLocally(score);
-
-
     sendScoreToServer(score);
-
-  
     displayHighScores();
 }
-
 
 function saveScoreLocally(score) {
     let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
     highScores.push(score);
-    highScores.sort((a, b) => b - a); 
-    highScores = highScores.slice(0, 5); 
+    highScores.sort((a, b) => b - a);
+    highScores = highScores.slice(0, 5);
     localStorage.setItem("highScores", JSON.stringify(highScores));
 }
-
 
 function sendScoreToServer(score) {
     const data = {
         score: score,
-        user: "Player",  
+        user: localStorage.getItem("username") || "Player",
     };
 
     fetch("https://kool.krister.ee/chat/stage2", {
@@ -210,37 +205,38 @@ function sendScoreToServer(score) {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(result => {
-        console.log("Score successfully sent to server:", result);
-    })
-    .catch(error => {
-        console.error("Error sending score to server:", error);
-    });
 }
-
 
 function displayHighScores() {
-    let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
     highScoresElement.innerHTML = "<h3>High Scores:</h3>";
+    
+    console.log("Fetching high scores from server...");
 
-    if (highScores.length === 0) {
-        highScoresElement.innerHTML += "No high scores yet.";
-    } else {
-        highScores.forEach((score, index) => {
-            const scoreElement = document.createElement("div");
-            scoreElement.innerHTML = `${index + 1}. ${score} points`;
-            highScoresElement.appendChild(scoreElement);
+    fetch("https://kool.krister.ee/chat/stage2")
+        .then(response => response.json())
+        .then(result => {
+            console.log("Fetched high scores from server:", result);
+            result.sort((a, b) => b.score - a.score);
+            
+            result.slice(0, 5).forEach((score, index) => {
+                const scoreElement = document.createElement("div");
+                scoreElement.innerHTML = `${index + 1}. ${score.user}: ${score.score} points`;
+                highScoresElement.appendChild(scoreElement);
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching high scores:", error);
+            highScoresElement.innerHTML += "Error loading high scores.";
         });
-    }
 }
+
 
 nextButton.addEventListener("click", nextQuestion);
 
 function resetState() {
-    nextButton.style.display = "none";  
+    nextButton.style.display = "none";
     while (answerButtons.firstChild) {
-        answerButtons.removeChild(answerButtons.firstChild);  
+        answerButtons.removeChild(answerButtons.firstChild);
     }
 }
 
@@ -255,18 +251,13 @@ function selectAnswer(e) {
         selectedBtn.classList.add("correct");
     } else {
         selectedBtn.classList.add("incorrect");
-        
+
         const correctButton = Array.from(allButtons).find(button => button.dataset.correct === "true");
         correctButton.classList.add("correct");
     }
 
-    checkAnswer({correct: isCorrect});
-    nextButton.style.display = 'block';  
+    checkAnswer({ correct: isCorrect });
+    nextButton.style.display = 'block';
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    displayHighScores();
-});
-
 startQuiz();
-
